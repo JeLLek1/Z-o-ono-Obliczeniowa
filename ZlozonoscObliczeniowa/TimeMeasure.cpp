@@ -3,6 +3,7 @@
 #include <iostream>
 #include <conio.h>
 
+static volatile bool foo;
 //Plik wyników
 const std::string TimeMeasure::RESULTFILE = "result.txt";
 
@@ -12,7 +13,6 @@ void TimeMeasure::restart()
 	this->start = std::chrono::high_resolution_clock::now();
 
 }
-
 //dlugosc od ostatniego restartu
 long long TimeMeasure::returnTime()
 {
@@ -46,7 +46,7 @@ bool TimeMeasure::test(int size)
 
 	this->restart();
 	for (int i = 0; i < size; i++) {
-		this->array->push(i/2, static_cast<size_t>(i/2));
+		this->array->push(i / 2, static_cast<size_t>(i / 2));
 	}
 	fileOutput += std::to_string(this->returnTime()) += "us\n:Test na tablicy - usuwanie\n-poczatek:";
 	if (!this->array->loadFile(this->file)) {
@@ -75,14 +75,14 @@ bool TimeMeasure::test(int size)
 	for (int i = 0; i < size; i++) {
 		this->array->pop(i / 2);
 	}
-	fileOutput += std::to_string(this->returnTime())+"us\nTest na tablicy - wyszukiwanie: ";
-	if(!this->array->loadFile(this->file)) {
+	fileOutput += std::to_string(this->returnTime()) + "us\nTest na tablicy - wyszukiwanie: ";
+	if (!this->array->loadFile(this->file)) {
 		return false;
 	}
 
 	this->restart();
 	for (int i = 0; i < size; i++) {
-		this->array->find(i);
+		foo = this->array->find(i);
 	}
 	fileOutput += std::to_string(this->returnTime()) + "us\nTest na liœcie - dodawanie: \n -na poczatek: ";
 
@@ -142,7 +142,7 @@ bool TimeMeasure::test(int size)
 
 	this->restart();
 	for (int i = 0; i < size; i++) {
-		this->list->find(i);
+		foo = this->list->find(i);
 	}
 	fileOutput += std::to_string(this->returnTime()) + "us\nTest na kopcu - dodawanie: ";
 	if (!this->array->loadFile(this->file)) {
@@ -160,7 +160,7 @@ bool TimeMeasure::test(int size)
 
 	this->restart();
 	int test;
- 	for (int i = 0; i < size; i++) {
+	for (int i = 0; i < size; i++) {
 		test = this->array->array[i];
 	}
 	fileOutput += std::to_string(this->returnTime()) + "us\n -Usuwanie: ";
@@ -176,7 +176,7 @@ bool TimeMeasure::test(int size)
 
 	this->restart();
 	for (int i = 0; i < size; i++) {
-		this->heap->find(i);
+		foo = this->heap->find(i);
 	}
 	fileOutput += std::to_string(this->returnTime()) + "us\nDrzewo czerwono czarne - dodawanie: ";
 	if (!this->heap->loadFile(this->file)) {
@@ -227,7 +227,7 @@ bool TimeMeasure::test(int size)
 	}
 	this->restart();
 	for (int i = 0; i < size; i++) {
-		this->avl->find(i);
+		foo = this->avl->find(i);
 	}
 	fileOutput += std::to_string(this->returnTime()) + "us";
 
@@ -256,10 +256,10 @@ TimeMeasure::TimeMeasure(std::string name) : Container(name)
 //wczytanie pliku do kontenerów
 bool TimeMeasure::loadFile()
 {
-	if (this->array->loadFile(this->file)&&
-		this->list->loadFile(this->file)&&
-		this->heap->loadFile(this->file)&&
-		this->rbTree->loadFile(this->file)&&
+	if (this->array->loadFile(this->file) &&
+		this->list->loadFile(this->file) &&
+		this->heap->loadFile(this->file) &&
+		this->rbTree->loadFile(this->file) &&
 		this->avl->loadFile(this->file)) {
 		this->size = this->array->returnSize();
 		return true;

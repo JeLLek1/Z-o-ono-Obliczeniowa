@@ -1,2 +1,14 @@
-﻿  TimeMeasure.cpp
-  ZlozonoscObliczeniowa.vcxproj -> C:\Users\JeLLek\Desktop\programowanie\ZlozonoscObliczeniowa\x64\Debug\ZlozonoscObliczeniowa.exe
+﻿  Array.cpp
+  Avl.cpp
+  Container.cpp
+  Heap.cpp
+C:\Users\JeLLek\Desktop\programowanie\ZlozonoscObliczeniowa\git\ZlozonoscObliczeniowa\Heap.cpp(175,18): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+C:\Users\JeLLek\Desktop\programowanie\ZlozonoscObliczeniowa\git\ZlozonoscObliczeniowa\Heap.cpp(410,28): warning C4267: "=": konwersja z "size_t" do "int", możliwa utrata danych
+  List.cpp
+C:\Users\JeLLek\Desktop\programowanie\ZlozonoscObliczeniowa\git\ZlozonoscObliczeniowa\List.cpp(253,17): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+  Menu.cpp
+  RBTree.cpp
+  TimeMeasure.cpp
+  ZlozonoscObliczeniowa.cpp
+  Generowanie kodu...
+  ZlozonoscObliczeniowa.vcxproj -> C:\Users\JeLLek\Desktop\programowanie\ZlozonoscObliczeniowa\git\x64\Debug\ZlozonoscObliczeniowa.exe
